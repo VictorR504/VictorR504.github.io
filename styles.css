@@ -1,0 +1,91 @@
+@font-face {
+    font-family: Drip;
+    src: url(fonts/DripOctober-vm0JA.ttf);
+    font-family: Comics;
+    src: url(fonts/CrotahFreeVersionItalic-z8Ev3.ttf);
+}
+/*
+Style for Log In
+*/
+body {
+    background-color: #f2f2f2;
+    font-family: Comics;
+    margin: 0;
+    padding: 0;
+  }
+  .title-name{
+    font-family: Comics;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 50px;    background: linear-gradient(to right, #ff6b6b, #3a1c71);
+    -webkit-background-clip: text; /* Safari/Chrome */
+    -webkit-text-fill-color: transparent; /* Safari/Chrome */
+    background-clip: text;
+  }
+  
+  .login-container {
+        background-color: #ffffff;
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  /* 
+  Style for personal page
+  */
+  .info-text {
+    text-align: center;
+  }
+  .options-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .option-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 20px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .option-btn:hover {
+    background-color: #45a049;
+  }
+  .Calorie-display{
+    background-color: #ffffff;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
