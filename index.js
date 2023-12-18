@@ -15,7 +15,7 @@ function sendMessage(event) {
 }
 
 function sendToServer(message) {
-  fetch("http://192.168.0.2:80", {
+  fetch("http://localhost:1234", {
     // Replace with your server's address and port
     method: "POST",
     headers: {
