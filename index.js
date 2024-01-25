@@ -1,5 +1,15 @@
-function sendMessage(event) {
-  if (event.key === "Enter") {
+let user = "";
+
+function ClickEnterUserName(){
+  user = document.getElementById("user-name").value
+  document.getElementById("InputName").style.display = "none";
+}
+
+function ClickEnterMessage(){
+  if(user === ""){
+    appendMessage("Admin", "enter a username")
+  }
+  else{
     // Get the user's input
     let userInput = document.getElementById("user-input").value;
 
@@ -7,10 +17,36 @@ function sendMessage(event) {
     document.getElementById("user-input").value = "";
 
     // Append the user's message to the chat
-    appendMessage("User", userInput);
-
+    appendMessage(user, userInput);
     // Send the message to the server
-    sendToServer(userInput);
+    //sendToServer(userInput);
+  }
+}
+
+function EnterUserName(event){
+  if(event.key== "Enter"){
+    user = document.getElementById("user-name").value
+    document.getElementById("InputName").style.display = "none";
+  }
+}
+
+function sendMessage(event) {
+  if (event.key === "Enter") {
+    if(user === ""){
+      appendMessage("Admin", "enter a username")
+    }
+    else{
+      // Get the user's input
+      let userInput = document.getElementById("user-input").value;
+  
+      // Clear the input field
+      document.getElementById("user-input").value = "";
+  
+      // Append the user's message to the chat
+      appendMessage(user, userInput);
+      // Send the message to the server
+      //sendToServer(userInput);
+    }
   }
 }
 

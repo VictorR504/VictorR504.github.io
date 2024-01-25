@@ -7,11 +7,22 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>---- Chat Delux ----</h1>
+    <h1>Chat Delux</h1>
     <h2>
-      <label for="name">Please chat with me XOXox</label>
+      <label for="name">Let's chat friend</label>
     </h2>
-    <div id="chat-container">
+    <div id="InputName">
+      <input
+        type="text" 
+        id="user-name"
+        placeholder="Enter a username..."
+        onkeypress="EnterUserName(event)"
+      />
+      <button id ="EnterButton" onclick="ClickEnterUserName()">
+        ENTER
+      </button>
+    </div>
+    <div id="chat-container" style="display: none;">
       <div id="messages"></div>
       <input
         type="text"
@@ -19,6 +30,10 @@
         placeholder="Type your message..."
         onkeypress="sendMessage(event)"
       />
+      <button onclick="ClickEnterMessage()">
+        ENTER
+      </button>
+      
     </div>
     <script src="index.js"></script>
   </body>

@@ -1,14 +1,26 @@
+@font-face {
+    font-family: DuneRise;
+    src: url(Fonts/Dune_Rise.ttf);
+}
+
 h1 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: DuneRise;
     font-size: 50px;
-    color:blue;
+    color: rgb(95, 78, 137);
     text-align: center;
 }
 
 h2 {
-    color: blueviolet;
-    font-size: 20;
+    font-family: DuneRise;
+    color: rgb(72, 130, 164);
+    font-size: 20px;
     text-align: center;
+}
+#InputName{
+    width: 150px;
+    padding: 10px;
+    margin: 20px auto;
+    display: flex; align-items: center;
 }
 
 #chat-container {
@@ -16,7 +28,8 @@ h2 {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 20px auto;
-    font-family: Arial, sans-serif;
+    font-family: DuneRise;
+    font-size: 15px;
 }
 
 #messages {
