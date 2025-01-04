@@ -378,13 +378,13 @@ footer {
     .scoreboard .name, 
     .scoreboard .score, 
     .scoreboard .vs {
-        font-size: 1.2em; /* Scale down font size */
+        font-size: 1.5em; /* Scale down font size */
     }
 }
 
 @media (max-width: 480px) {
     .scoreboard {
-        gap: 10px; /* Reduce spacing further */
+        gap: 20px; /* Reduce spacing further */
     }
 
     .scoreboard li {
