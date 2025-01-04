@@ -75,7 +75,7 @@ progressForm.addEventListener('submit', function(e) {
     progressForm.reset();
 });
 
-const apiUrl = "https://script.google.com/macros/s/AKfycbwn3blgDwqhizYwpeApcWfq0ISWuu-y2gzZ7C-p9v-m9QM23D7ieLCzNmWutQB6hRWaJg/exec";
+const apiUrl = "https://script.google.com/macros/s/AKfycbwFeckDb3lmTd0M77ieLSj4zTgIdrh_pijmRzT85H0jjWXY560lsy1yTSveUj7HzAO_KQ/exec";
 
 async function loadLeaderboard() {
     const response = await fetch(`${apiUrl}?action=read`);
