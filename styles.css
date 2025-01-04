@@ -371,4 +371,37 @@ footer {
         float: none;
         text-align: center;
     }
+    .scoreboard {
+        gap: 20px; /* Reduce spacing between items */
+    }
+
+    .scoreboard .name, 
+    .scoreboard .score, 
+    .scoreboard .vs {
+        font-size: 1.2em; /* Scale down font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .scoreboard {
+        gap: 10px; /* Reduce spacing further */
+    }
+
+    .scoreboard li {
+        max-width: 100%; /* Allow items to take full width */
+        margin: 5px 0; /* Add vertical spacing */
+    }
+
+    .scoreboard .name {
+        font-size: 1em;
+    }
+
+    .scoreboard .score {
+        font-size: 1.5em;
+    }
+
+    .scoreboard .vs {
+        font-size: 1em;
+        margin-top: 10px;
+    }
 }
