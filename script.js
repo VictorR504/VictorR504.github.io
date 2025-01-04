@@ -75,14 +75,14 @@ progressForm.addEventListener('submit', function(e) {
     progressForm.reset();
 });
 
-// Handle Newsletter Form Submission
-const newsletterForm = document.getElementById('newsletter-form');
+const apiUrl = "https://script.google.com/macros/s/AKfycbwFeckDb3lmTd0M77ieLSj4zTgIdrh_pijmRzT85H0jjWXY560lsy1yTSveUj7HzAO_KQ/exec";
 
-newsletterForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    // Here you would typically send the email to your newsletter service
-    // For this example, we'll just display an alert
-    alert(`Thank you for subscribing with ${email}!`);
-    newsletterForm.reset();
-});
+async function loadLeaderboard() {
+    const response = await fetch(`${apiUrl}?action=read`);
+    const data = await response.json();
+    const leaderboardDiv = document.getElementById("leaderboard");
+
+    leaderboardDiv.innerHTML = data.map((row, index) => `<p>${index + 1}. ${row[0]}: ${row[1]}</p>`).join('');
+}
+
+document.addEventListener("DOMContentLoaded", loadLeaderboard);
