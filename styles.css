@@ -372,13 +372,13 @@ footer {
         text-align: center;
     }
     .scoreboard {
-        gap: 50px; /* Reduce spacing between items */
+        gap: 20px; /* Reduce spacing between items */
     }
 
     .scoreboard .name, 
     .scoreboard .score, 
     .scoreboard .vs {
-        font-size: 4em; /* Scale down font size */
+        font-size: 3em; /* Scale down font size */
     }
 }
 
