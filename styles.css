@@ -378,13 +378,14 @@ footer {
     .scoreboard .name, 
     .scoreboard .score, 
     .scoreboard .vs {
-        font-size: 3em; /* Scale down font size */
+        font-size: 1.2em; /* Scale down font size */
     }
 }
 
+/* Media Query for Very Small Screens (e.g., Phones) */
 @media (max-width: 480px) {
     .scoreboard {
-        gap: 20px; /* Reduce spacing further */
+        gap: 10px; /* Reduce spacing further */
     }
 
     .scoreboard li {
@@ -393,15 +394,15 @@ footer {
     }
 
     .scoreboard .name {
-        font-size: 3em;
+        font-size: 1em;
     }
 
     .scoreboard .score {
-        font-size: 3em;
+        font-size: 1.5em;
     }
 
     .scoreboard .vs {
-        font-size: 3em;
-        margin-top: 15px;
+        font-size: 1em;
+        margin-top: 10px;
     }
 }
