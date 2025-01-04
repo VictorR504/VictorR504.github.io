@@ -1,40 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Chat Delux</h1>
-    <h2>
-      <label for="name">Let's chat friend</label>
-    </h2>
-    <div id="InputName">
-      <input
-        type="text" 
-        id="user-name"
-        placeholder="Enter a username..."
-        onkeypress="EnterUserName(event)"
-      />
-      <button id ="EnterButton" onclick="ClickEnterUserName()">
-        ENTER
-      </button>
-    </div>
-    <div id="chat-container" style="display: none;">
-      <div id="messages"></div>
-      <input
-        type="text"
-        id="user-input"
-        placeholder="Type your message..."
-        onkeypress="sendMessage(event)"
-      />
-      <button onclick="ClickEnterMessage()">
-        ENTER
-      </button>
-      
-    </div>
-    <script src="index.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Workout Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container" >
+            <h1>Open Workout Challange</h1>
+            <ul class="scoreboard">
+                <li>
+                    <label class="name">Matilda</label>
+                    <label class="score">4</label>
+                </li>
+                <li>
+                    <label class="vs">VS</label>
+                </li>
+                <li>
+                    <label class="name">Victor</label>
+                    <label class="score">0</label>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class= "hero-lable" id="hero-lable" style="display: none;"> Good Luck </div>
+            <div class="hero-content"  id="hero-content" style="display: block;">
+                <h2>Take the challange</h2>
+                <p>Enter password to see the workout</p>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Enter password">
+                    <button id="submit-password" class="btn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Challenge Section -->
+    <!-- Weekly Challenge Section -->
+    <section id="weekly-challenge" class="weekly-challenge" style="display: none;">
+        <div class="container">
+            <h2>This Week’s Challenge</h2>
+            <div class="challenge-details">
+                <div class="challenge-description">
+                    <p><strong>Complete 5 rounds of:</strong> Burpees 20, Push-ups 20, and Squats 20 in under 20 minutes.</p>
+                    <!--
+                    <video controls>
+                        <source src="workout-demo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    -->
+                </div>
+            </div>
+            <div class="challenge-timer">
+                <h3>Time Left:</h3>
+                <div id="countdown">
+                    <!-- Countdown Timer -->
+                    <span id="days">7</span> Days 
+                    <span id="hours">00</span> Hours 
+                    <span id="minutes">00</span> Minutes 
+                    <span id="seconds">00</span> Seconds
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Progress Input Section -->
+    <!--
+    <section class="progress-input">
+        <div class="container">
+            <h2>Log Your Progress</h2>
+            <form id="progress-form">
+                <label for="rounds">Number of Rounds Completed:</label>
+                <input type="number" id="rounds" name="rounds" min="0" required>
+
+                <label for="time">Time Taken (minutes):</label>
+                <input type="number" id="time" name="time" min="0" step="0.1" required>
+
+                <label for="upload">Upload Photo/Video:</label>
+                <input type="file" id="upload" name="upload" accept="image/*,video/*">
+
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
+    -->
+    <!-- Community Highlights Section -->
+    <!--
+    <section class="community-highlights">
+        <div class="container">
+            <h2>Community Highlights</h2>
+            <div class="highlights-content">
+                <div class="achievements">
+                    <h3>Last Week's Achievements</h3>
+                    <ul>
+                        <li>User1 completed 10 rounds!</li>
+                        <li>User2 finished under 18 minutes!</li>
+                        <li>User3 shared an inspiring video!</li>
+                    </ul>
+                </div>
+                <div class="leaderboard">
+                    <h3>Leaderboard</h3>
+                    <ol>
+                        <li>User2 - 18 minutes</li>
+                        <li>User1 - 20 minutes</li>
+                        <li>User3 - 21 minutes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!-- Sidebar (Optional) -->
+    <!-- For simplicity, we'll include it as a section at the bottom. In a real layout, it would be positioned on the side using CSS. -->
+    <aside class="sidebar">
+        <div class="container">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">TBD Previous Challenges</a></li>
+                <li><a href="#">TBD Leaderboard</a></li>
+                <li><a href="#">TBD Post a workout</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!--
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                -->
+                <!--
+                <div class="newsletter">
+                    <form id="newsletter-form">
+                        <label for="email">Subscribe to our Newsletter:</label>
+                        <input type="email" id="email" name="email" placeholder="Your email" required>
+                        <button type="submit" class="btn-secondary">Subscribe</button>
+                    </form>
+                </div>
+                -->
+                <div class="contact-info">
+                    <p>&copy; 2025 Open Workout Challenge. All rights reserved.</p>
+                    <p>Contact us at <a href="mailto:info@workoutchallenge.com">info@workoutchallenge.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
 </html>
