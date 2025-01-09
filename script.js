@@ -18,6 +18,19 @@ const weeklyChallengeSection = document.getElementById("weekly-challenge");
 const heroScreen = document.getElementById("hero-content");
 const heroLable = document.getElementById("hero-lable");
 
+const apiUrl = "https://script.google.com/macros/s/AKfycbyx1qu_SYBAVYVDaS50ncj_mPGmG4mvwP67fXV95B_U8ZSsiZkBvcn6Ee0jzUr4XXq3ew/exec";
+
+async function loadLeaderboard() {
+    const response = await fetch(`${apiUrl}?action=read`);
+    const data = await response.json();
+    const leaderboardDiv = document.getElementById("leaderboard");
+
+    leaderboardDiv.innerHTML = data.map((row, index) => `<p>${index + 1}. ${row[0]}: ${row[1]}</p>`).join('');
+}
+
+document.addEventListener("DOMContentLoaded", loadLeaderboard);
+
+
 // Event Listener for Password Submission
 submitPasswordButton.addEventListener("click", () => {
     const enteredPassword = passwordInput.value;
@@ -75,14 +88,3 @@ progressForm.addEventListener('submit', function(e) {
     progressForm.reset();
 });
 
-const apiUrl = "https://script.google.com/macros/s/AKfycbwFeckDb3lmTd0M77ieLSj4zTgIdrh_pijmRzT85H0jjWXY560lsy1yTSveUj7HzAO_KQ/exec";
-
-async function loadLeaderboard() {
-    const response = await fetch(`${apiUrl}?action=read`);
-    const data = await response.json();
-    const leaderboardDiv = document.getElementById("leaderboard");
-
-    leaderboardDiv.innerHTML = data.map((row, index) => `<p>${index + 1}. ${row[0]}: ${row[1]}</p>`).join('');
-}
-
-document.addEventListener("DOMContentLoaded", loadLeaderboard);
