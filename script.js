@@ -1,90 +1,63 @@
-// Countdown Timer
-// Set the date we're counting down to (end of the week: Sunday at 23:59:59)
-const countdownDate = new Date();
-countdownDate.setDate(countdownDate.getDate() + (7 - countdownDate.getDay())); // Next Sunday
-countdownDate.setHours(23, 59, 59, 999);
+// Google Sheet ID
+const SHEET_ID = '1Fv0lfNaPWF6Smey9JOafzsuML1uvjT7jEyAbHtoAryY';
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
 
-const countdown = document.getElementById("countdown");
+let validPasswords = [];
 
-// JavaScript Password Handling
-
-// Correct password (for demo purposes, it's hardcoded)
-const correctPassword = "";
-
-// Elements
-const passwordInput = document.getElementById("password");
-const submitPasswordButton = document.getElementById("submit-password");
-const weeklyChallengeSection = document.getElementById("weekly-challenge");
-const heroScreen = document.getElementById("hero-content");
-const heroLable = document.getElementById("hero-lable");
-
-const apiUrl = "https://script.google.com/macros/s/AKfycbyx1qu_SYBAVYVDaS50ncj_mPGmG4mvwP67fXV95B_U8ZSsiZkBvcn6Ee0jzUr4XXq3ew/exec";
-
-async function loadLeaderboard() {
-    const response = await fetch(`${apiUrl}?action=read`);
-    const data = await response.json();
-    const leaderboardDiv = document.getElementById("leaderboard");
-
-    leaderboardDiv.innerHTML = data.map((row, index) => `<p>${index + 1}. ${row[0]}: ${row[1]}</p>`).join('');
+// Fetch passwords from Google Sheet
+async function fetchPasswordsFromSheet() {
+    try {
+        logMessage('Fetching passwords from Google Sheet...');
+        const response = await fetch(CSV_URL);
+        const csv = await response.text();
+        
+        // Parse CSV and extract passwords from Column A
+        const lines = csv.split('\n');
+        validPasswords = lines
+            .map(line => line.trim())
+            .filter(line => line !== '' && line !== 'Password'); // Remove empty and header rows
+        
+        logMessage(`Loaded ${validPasswords.length} passwords`);
+    } catch (error) {
+        console.error('Error fetching passwords:', error);
+        alert('Error loading passwords. Please check the console.');
+    }
 }
 
-document.addEventListener("DOMContentLoaded", loadLeaderboard);
-
-
-// Event Listener for Password Submission
-submitPasswordButton.addEventListener("click", () => {
-    const enteredPassword = passwordInput.value;
-
-    if (enteredPassword === correctPassword) {
-        // Show the weekly challenge section
-        weeklyChallengeSection.style.display = "block";
-        heroLable.style.display = "block";
-        heroScreen.style.display = "none";
-        alert("Password correct! Weekly Challenge unlocked!");
-    } else {
-        alert("Incorrect password. Please try again.");
-    }
+// Initialize the application
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Workout With Me - App Initialized');
+    
+    const loginForm = document.getElementById('loginForm');
+    const passwordInput = document.getElementById('password');
+    
+    // Fetch passwords on page load
+    fetchPasswordsFromSheet();
+    
+    // Event listener for the login form
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const password = passwordInput.value.trim();
+        
+        if (password === '') {
+            alert('Please enter a password');
+        } else if (validPasswords.includes(password)) {
+            alert(`Welcome to your workout journey! 💪`);
+            logMessage('Login successful');
+            passwordInput.value = '';
+            // Redirect to workouts page
+            setTimeout(() => {
+                window.location.href = 'workouts.html';
+            }, 500);
+        } else {
+            alert('Invalid password. Please try again.');
+            logMessage('Login failed - invalid password');
+            passwordInput.value = '';
+        }
+    });
 });
 
-const timer = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    if (distance < 0) {
-        clearInterval(timer);
-        countdown.innerHTML = "Challenge Ended!";
-        return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-    );
-
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-}, 1000);
-
-// Handle Progress Form Submission
-const progressForm = document.getElementById('progress-form');
-
-progressForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Here you would typically send the data to the server
-    // For this example, we'll just display an alert
-    const rounds = document.getElementById('rounds').value;
-    const time = document.getElementById('time').value;
-    const upload = document.getElementById('upload').value;
-
-    alert(`Progress Submitted!\nRounds: ${rounds}\nTime: ${time} minutes\nUpload: ${upload ? 'Yes' : 'No'}`);
-    progressForm.reset();
-});
-
+// Utility function
+function logMessage(message) {
+    console.log(`[WorkoutWithMe] ${message}`);
+}

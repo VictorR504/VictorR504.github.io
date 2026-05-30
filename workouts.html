@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout With Me - Main</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Workout With Me</h1>
+        <p>Your Personal Fitness Hub</p>
+    </header>
+    
+    <main>
+        <section class="dashboard">
+            <h2>Welcome to Your Workout Dashboard</h2>
+            <p>Ready to get fit? Start your workout journey below!</p>
+            
+            <div class="workout-container">
+                <div class="workout-card">
+                    <h3>💪 Måndag</h3>
+                    <p>High-intensity cardio workouts to boost your endurance</p>
+                    <button class="workout-btn" data-day="Måndag">Start</button>
+                </div>
+                
+                <div class="workout-card">
+                    <h3>💪 Tisdag</h3>
+                    <p>Build muscle with targeted strength training exercises</p>
+                    <button class="workout-btn" data-day="Tisdag">Start</button>
+                </div>
+                
+                <div class="workout-card">
+                    <h3>🏃 Onsdag</h3>
+                    <p>Improve your flexibility and balance with stretching</p>
+                    <button class="workout-btn" data-day="Onsdag">Start</button>
+                </div>
+
+                <div class="workout-card">
+                    <h3>🧘 Torsdag</h3>
+                    <p>Improve your flexibility and balance with stretching</p>
+                    <button class="workout-btn" data-day="Torsdag">Start</button>
+                </div>
+
+                <div class="workout-card">
+                    <h3>💪 Fredag</h3>
+                    <p>Improve your flexibility and balance with stretching</p>
+                    <button class="workout-btn" data-day="Fredag">Start</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workout Details Modal -->
+        <div id="workoutModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="workoutDetails"></div>
+            </div>
+        </div>
+    </main>
+                <div class="workout-card">
+                    <h3>🏃 Lördag</h3>
+                    <p>Improve your flexibility and balance with stretching</p>
+                    <button class="workout-btn">Start </button>
+                </div>
+
+                <div class="workout-card">
+                    <h3>🧘 Söndag</h3>
+                    <p>Improve your flexibility and balance with stretching</p>
+                    <button class="workout-btn">Start </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <button id="logoutBtn" class="logout-btn">Log Out</button>
+        <p>&copy; 2026 Workout With Me. All rights reserved.</p>
+    </footer>
+    
+    <script src="workouts.js"></script>
+</body>
+</html>
