@@ -3,7 +3,11 @@ const WORKOUT_SHEET_ID = '1NE1lLuDUStf1NWXJDYOQM1NJ6iY9_XUlG5lPC5bgIWA';
 const WORKOUT_CSV_URL = `https://docs.google.com/spreadsheets/d/${WORKOUT_SHEET_ID}/export?format=csv`;
 
 let workoutHeaders = [];
-let workoutDescriptions = [];
+let workoutDescriptionsMonday = [];
+let workoutDescriptionsThusday = [];
+let workoutDescriptionsWensday = [];
+let workoutDescriptionsFriday = [];
+let workoutDescriptionsSaturday = [];
 
 // Fetch workout data from Google Sheet
 async function fetchWorkoutData() {
@@ -19,10 +23,26 @@ async function fetchWorkoutData() {
         if (lines.length > 0) {
             workoutHeaders = lines[0].split(',').map(h => h.trim()).slice(0, 4);
         }
-        
+
         // Second row is descriptions (columns A-D)
         if (lines.length > 1) {
-            workoutDescriptions = lines[1].split(',').map(d => d.trim()).slice(0, 4);
+            workoutDescriptionsMonday = lines[1].split(',').map(d => d.trim()).slice(0, 4);
+        }
+        // Third row is descriptions (columns A-D)
+        if (lines.length > 2) {
+            workoutDescriptionsThusday = lines[2].split(',').map(d => d.trim()).slice(0, 4);
+        }
+        // Foruth row is descriptions (columns A-D)
+        if (lines.length > 3) {
+            workoutDescriptionsWensday = lines[3].split(',').map(d => d.trim()).slice(0, 4);
+        }
+        // Fifth row is descriptions (columns A-D)
+        if (lines.length > 4) {
+            workoutDescriptionsFriday = lines[4].split(',').map(d => d.trim()).slice(0, 4);
+        }
+        // Sixth row is descriptions (columns A-D)
+        if (lines.length > 5) {
+            workoutDescriptionsSaturday = lines[5].split(',').map(d => d.trim()).slice(0, 4);
         }
         
         console.log('Workout headers:', workoutHeaders);
@@ -43,13 +63,30 @@ function displayWorkoutDetails() {
     }
     
     let html = '<h3>Today\'s Workout</h3><div class="workout-grid">';
+    let workout = [];
+    
+    if(dayName === "Måndag"){
+        workout = workoutDescriptionsMonday;
+    }
+    if(dayName === "Tisdag"){
+        workout = workoutDescriptionsThusday;
+    }
+    if(dayName === "Onsdag"){
+        workout = workoutDescriptionsWensday;
+    }
+    if(dayName === "Fredag"){
+        workout = workoutDescriptionsFriday;
+    }
+    if(dayName === "Lördag"){
+        workout = workoutDescriptionsSaturday;
+    }
     
     // Create a card for each header/description pair
     for (let i = 0; i < workoutHeaders.length; i++) {
         html += `
             <div class="workout-item">
                 <h4>${workoutHeaders[i]}</h4>
-                <p>${workoutDescriptions[i] || 'N/A'}</p>
+                <p>${workout[i] || 'N/A'}</p>
             </div>
         `;
     }
@@ -82,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`User started: ${dayName}`);
             
             // Display workout details
-            displayWorkoutDetails();
+            displayWorkoutDetails(dayName);
             
             // Show modal
             modal.style.display = 'block';
