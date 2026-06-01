@@ -48,12 +48,15 @@ main {
     color: #667eea;
     margin-bottom: 1rem;
     font-size: 2rem;
+    text-align: center;
 }
 
 .intro p {
     margin-bottom: 2rem;
     font-size: 1.1rem;
     color: #555;
+    text-align: center;
+
 }
 
 #loginForm {
@@ -131,12 +134,14 @@ footer p {
     color: #667eea;
     margin-bottom: 0.5rem;
     font-size: 2rem;
+    text-align: center;
 }
 
 .dashboard > p {
     margin-bottom: 2rem;
     font-size: 1.1rem;
     color: #555;
+    text-align: center;
 }
 
 .workout-container {
