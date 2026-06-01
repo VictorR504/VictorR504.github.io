@@ -9,6 +9,8 @@ let workoutDescriptionsWensday = [];
 let workoutDescriptionsFriday = [];
 let workoutDescriptionsSaturday = [];
 
+let currentDay = "";
+
 // Fetch workout data from Google Sheet
 async function fetchWorkoutData() {
     try {
@@ -46,7 +48,7 @@ async function fetchWorkoutData() {
         }
         
         console.log('Workout headers:', workoutHeaders);
-        console.log('Workout descriptions:', workoutDescriptions);
+        //console.log('Workout descriptions:', workoutDescriptions);
     } catch (error) {
         console.error('Error fetching workout data:', error);
         alert('Error loading workout data. Please check the console.');
@@ -64,20 +66,20 @@ function displayWorkoutDetails() {
     
     let html = '<h3>Today\'s Workout</h3><div class="workout-grid">';
     let workout = [];
-    
-    if(dayName === "Måndag"){
+
+    if(currentDay === "Måndag"){
         workout = workoutDescriptionsMonday;
     }
-    if(dayName === "Tisdag"){
+    if(currentDay === "Tisdag"){
         workout = workoutDescriptionsThusday;
     }
-    if(dayName === "Onsdag"){
+    if(currentDay === "Onsdag"){
         workout = workoutDescriptionsWensday;
     }
-    if(dayName === "Fredag"){
+    if(currentDay === "Fredag"){
         workout = workoutDescriptionsFriday;
     }
-    if(dayName === "Lördag"){
+    if(currentDay === "Lördag"){
         workout = workoutDescriptionsSaturday;
     }
     
@@ -118,8 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const dayName = e.target.getAttribute('data-day');
             console.log(`User started: ${dayName}`);
             
+            currentDay = dayName;
             // Display workout details
-            displayWorkoutDetails(dayName);
+            displayWorkoutDetails();
             
             // Show modal
             modal.style.display = 'block';
