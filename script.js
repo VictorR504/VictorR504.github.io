@@ -1,6 +1,7 @@
 // Google Sheet ID
 const SHEET_ID = '1Fv0lfNaPWF6Smey9JOafzsuML1uvjT7jEyAbHtoAryY';
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+let currentUser = "";
 
 let validPasswords = [];
 
@@ -16,6 +17,7 @@ async function fetchPasswordsFromSheet() {
         validPasswords = lines
             .map(line => line.trim())
             .filter(line => line !== '' && line !== 'Password'); // Remove empty and header rows
+        
         
         logMessage(`Loaded ${validPasswords.length} passwords`);
     } catch (error) {
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (password === '') {
             alert('Please enter a password');
         } else if (validPasswords.includes(password)) {
-            alert(`Welcome to your workout journey! 💪`);
+            alert(`Welcome ` + password);
             logMessage('Login successful');
             passwordInput.value = '';
             // Redirect to workouts page
