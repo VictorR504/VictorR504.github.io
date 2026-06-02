@@ -231,8 +231,14 @@ footer p {
     border-radius: 10px;
     width: 90%;
     max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     animation: slideIn 0.3s ease;
+}
+
+.modal-content:focus {
+    outline: 3px solid rgba(102, 126, 234, 0.7);
 }
 
 @keyframes slideIn {

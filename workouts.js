@@ -124,20 +124,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // Display workout details
             displayWorkoutDetails();
             
-            // Show modal
+            // Show modal and make it the active scrollable widget
             modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            modal.querySelector('.modal-content').focus();
         });
     });
     
-    // Close modal when X is clicked
-    closeBtn.addEventListener('click', () => {
+    function closeModal() {
         modal.style.display = 'none';
-    });
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    // Close modal when X is clicked
+    closeBtn.addEventListener('click', closeModal);
     
     // Close modal when clicking outside of it
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
-            modal.style.display = 'none';
+            closeModal();
         }
     });
 });
