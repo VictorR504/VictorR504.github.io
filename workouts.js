@@ -1,13 +1,21 @@
 // Google Sheet ID
 const WORKOUT_SHEET_ID = '1NE1lLuDUStf1NWXJDYOQM1NJ6iY9_XUlG5lPC5bgIWA';
+const WORKOUT_SHEET_ID2 = '1K4tzCiYp00nGzq71UZdPqRjiDBgQC5eEZypQF-qnlUk';
 const WORKOUT_CSV_URL = `https://docs.google.com/spreadsheets/d/${WORKOUT_SHEET_ID}/export?format=csv`;
+const WORKOUT_SHEET_URL = `https://docs.google.com/spreadsheets/d/${WORKOUT_SHEET_ID2}/export?format=csv`;
 
+// Data storage variables
 let workoutHeaders = [];
 let workoutDescriptionsMonday = [];
 let workoutDescriptionsThusday = [];
 let workoutDescriptionsWensday = [];
 let workoutDescriptionsFriday = [];
 let workoutDescriptionsSaturday = [];
+let workoutDescriptionsBonus = [];
+let workoutDescriptionsSquatHeader = [];
+let workoutDescriptionsSquat = [];
+let workoutDescriptionsBench = [];
+
 
 let currentDay = "";
 
@@ -54,6 +62,28 @@ async function fetchWorkoutData() {
         alert('Error loading workout data. Please check the console.');
     }
 }
+// Fetch workout data from Google Sheet
+async function fetchWorkoutDataSquat() {
+    try {
+        console.log('Fetching workout data from Google Sheet...');
+        const response = await fetch(WORKOUT_SHEET_URL);
+        const csv = await response.text();
+        
+        // Parse CSV
+        const lines = csv.split('\n').filter(line => line.trim() !== '');
+        
+        // First row is headers (columns A-D)
+        if (lines.length > 0) {
+            workoutDescriptionsSquatHeader = lines[0].split(',').map(h => h.trim()).slice(0, 4);
+        }
+        
+        console.log('Workout headers:', workoutDescriptionsSquatHeader);
+        //console.log('Workout descriptions:', workoutDescriptions);
+    } catch (error) {
+        console.error('Error fetching workout data:', error);
+        alert('Error loading workout data. Please check the console.');
+    }
+}
 
 // Display workout details in modal
 function displayWorkoutDetails() {
@@ -82,7 +112,17 @@ function displayWorkoutDetails() {
     if(currentDay === "Lördag"){
         workout = workoutDescriptionsSaturday;
     }
-    
+    if(currentDay === "bonus"){
+        workout = workoutDescriptionsSaturday;
+    }
+    if(currentDay === "Squat"){
+        //workout = workoutDescriptionsSquat;
+        workoutHeaders = workoutDescriptionsSquatHeader;
+    }
+    if(currentDay === "Bench"){
+        workout = workoutDescriptionsSaturday;
+    }
+
     // Create a card for each header/description pair
     for (let i = 0; i < workoutHeaders.length; i++) {
         html += `
@@ -108,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch workout data on page load
     fetchWorkoutData();
+    fetchWorkoutDataSquat();
     
     // Logout button event listener
     logoutBtn.addEventListener('click', () => {

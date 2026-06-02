@@ -68,7 +68,7 @@ main {
 .form-group {
     display: flex;
     flex-direction: column;
-    text-align: left;
+    text-align: center;
 }
 
 .form-group label {
